@@ -1,14 +1,20 @@
 package ladder;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class RowTest {
 
+    @BeforeEach
+    void init() {
+
+    }
     @Test
     void 참여자_한_명_사다리_이동() {
-        //given
+        //given - 한 명 들어오면 한 줄만 생성
         int numberOfPerson = 1;
         Row row = new Row(numberOfPerson);
 
