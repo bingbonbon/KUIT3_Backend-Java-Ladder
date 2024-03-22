@@ -1,6 +1,7 @@
 package ladder;
 
 public class NaturalNumber {
+
     private final int number;
     private NaturalNumber(int number) {
         validate(number);

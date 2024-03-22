@@ -1,24 +1,36 @@
 package ladder;
 
+import ladder.NaturalNumber;
+import ladder.Position;
+import ladder.Row;
+
 import java.util.Random;
 
 public class LadderCreator {
 
-    private static Ladder ladder;
+    private final Row[] rows;
+    private final Random random;
 
-    public LadderCreator(NaturalNumber numberOfRows, NaturalNumber numberOfPersons) {
+    public LadderCreator(NaturalNumber numberOfRows, NaturalNumber numberOfPerson) {
+        random = new Random();
+        rows = new Row[numberOfRows.getNumber()];
+        for (int i = 0; i < rows.length; i++) {
+            rows[i] = new Row(numberOfPerson);
+            //여기부터 렌덤으로 drawLine해주는거 메서드로 뺴주기.
+        }
+        drawRandomLine();
     }
-
-    public Ladder ladderCreator(NaturalNumber numberOfRows, NaturalNumber numberOfPersons) {
-        Random random = new Random();
-        Ladder ladder = new Ladder(numberOfRows, numberOfPersons);
-        for (int i = 0; i < numberOfRows.getNumber(); i++) {
-            for (int j = 0; j < numberOfPersons.getNumber(); j++) {
-                if(random.nextBoolean()) {
-                    ladder.drawLine(i, j);
+    private void drawRandomLine() {
+        for(int i = 0; i < rows.length; i++) {
+            for(int j = 0; j <rows[i].getNode().length - 1; j++) {
+                if (random.nextBoolean()) {
+                    rows[i].drawLine(Position.of(j));
                 }
             }
         }
-        return ladder;
+    }
+    //ladderRunner의 run이 Row[]를 파라미터로 받기 때문에 rows를 받을 수 있는 메서드 만들어주기
+    public Row[] getRows() {
+        return rows;
     }
 }
